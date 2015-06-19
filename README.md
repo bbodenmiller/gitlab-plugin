@@ -1,7 +1,7 @@
 gitlab-plugin
 =====================
 
-This plugin emulates Jenkins as a GitlabCI Web Service to be used with GitlabHQ.
+This plugin emulates Jenkins as a GitLabCI Web Service to be used with GitLab.
 
 [![Build Status](https://travis-ci.org/DABSquared/gitlab-plugin.svg?branch=master)](https://travis-ci.org/DABSquared/gitlab-plugin) 
 [![Gitter chat](https://badges.gitter.im/DABSquared/gitlab-plugin.png)](https://gitter.im/DABSquared/gitlab-plugin)
@@ -21,23 +21,23 @@ Major Help Needed
 =====================
 I would like this project to be able to handle building merge requests and regular pushes. In order to do this I need a way to configure the git plugin via code to merge two branches together before a build. Much like the RevisionParameterAction.java in the git plugin, we need a class that takes to branches, a source and a target, and can be passed as a build action. I have started an issue for the Git plugin here: https://issues.jenkins-ci.org/browse/JENKINS-23362 If you know of a way to do this please PM on twitter at @bass_rock. All the other necessary code exists in this repo and works.
 
-Configuring access to Gitlab
+Configuring access to GitLab
 =======================================
 
-Optionally, the plugin communicates with the Gitlab server in order to fetch additional information. At this moment, this information is limited to fetching the source project of a Merge Request, in order to support merging from forked repositories. 
+Optionally, the plugin communicates with the GitLab server in order to fetch additional information. At this moment, this information is limited to fetching the source project of a Merge Request, in order to support merging from forked repositories. 
 
-To enable this functionality, a user should be set up on Gitlab, which adequate permissions to access the repository. On the global configuration screen, supply the gitlab host url ``http://your.gitlab.server`` and the API token of the user of choice.
+To enable this functionality, a user should be set up on GitLab, which adequate permissions to access the repository. On the global configuration screen, supply the GitLab host URL ``http://your.gitlab.server`` and the API token of the user of choice.
 
 Using it With A Job
 =====================
 * Create a new job by going to *New Job*
 * Set the _Project Name_ to whatever you like
-* If you have the GitHub plugin installed, feel free to specify the ``GitHub Project`` url as the url for the Gitlab project.
+* If you have the GitHub plugin installed, feel free to specify the ``GitHub Project`` URL as the URL for the GitLab project.
 * In the *Source Code Management* section:
     * Click *Git*
     * Enter your *Repository URL* (e.g.: ``git@your.gitlab.server:group/repo_name.git``)
       * In the Advanced settings, set its *Name* to ``origin``
-    * To be able to merge from forked repositories:  <br/>**Note:** this requires [configuring communication to the Gitlab server](#configuring-access-to-gitlab)
+    * To be able to merge from forked repositories:  <br/>**Note:** this requires [configuring communication to the GitLab server](#configuring-access-to-gitlab)
       * Add a second repository with:
         * *URL*: ``${gitlabSourceRepoURL}`` 
         * *Name* (in Advanced): ``${gitlabSourceRepoName}``
@@ -83,7 +83,7 @@ Branch filtering
 
 Triggers from push events may be filtered based on the branch name, i.e. the build will only be allowed for selected branches. On the project configuration page, a list of all branches on the remote repository is displayed under ``Build when a change is pushed to GitLab.``. It is possible to select multiple branches by holding Ctrl and clicking. 
 
-This functionality requires accessing the Gitlab server (see [above](#configuring-access-to-gitlab)) and for the time being also a git repository url already saved in the project configuration. In other words, when creating a new project, the configuration needs to be saved *once* before being able to select the allowed branches. For existing projects, all branches are allowed to push by default.
+This functionality requires accessing the GitLab server (see [above](#configuring-access-to-gitlab)) and for the time being also a git repository URL already saved in the project configuration. In other words, when creating a new project, the configuration needs to be saved *once* before being able to select the allowed branches. For existing projects, all branches are allowed to push by default.
 
 Build Tags
 ================
